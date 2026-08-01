@@ -11,20 +11,30 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   ai:
+#    ollama:
+#      base-url: http://localhost:11434
+#      chat:
+#        options:
+#          model: phi4-mini:3.8b
+#          temperature: 0.7
     chat:
-#      client:
-#        enabled: false
-#    google:
-#      genai:
-#        api-key: ${GOOGLE_API_KEY}
-#        chat:
-#            options:
-#                model: gemini-3.5-flash
-#                temperature: 0.7
-      ollama:
-        base-url: http://localhost:11434
+      client:
+        enabled: true
+    google:
+      genai:
+        api-key: ${GOOGLE_API_KEY}
         chat:
-          options:
-            model: phi4-mini:3.8b
-            temperature: 0.7
+            options:
+                model: gemini-3.5-flash
+                temperature: 0.7
+
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: DEBUG
